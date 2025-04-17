@@ -1,6 +1,6 @@
 import {Suspense} from 'react';
 import {Await, NavLink, useAsyncValue} from '@remix-run/react';
-import {useAnalytics, useOptimisticCart, Image} from '@shopify/hydrogen';
+import {useAnalytics, useOptimisticCart} from '@shopify/hydrogen';
 import {useAside} from '~/components/Aside';
 
 /**
@@ -9,17 +9,15 @@ import {useAside} from '~/components/Aside';
 export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
   const {shop, menu} = header;
   return (
-    <header className="header container mx-auto bg-white/75 backdrop-blur-xl">
-      {/* <HeaderMenu
+    <header className="header">
+      <HeaderMenu
         menu={menu}
         viewport="desktop"
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
-      /> */}
-      <SearchToggle />
+      />
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        {/* <strong>{shop.name}</strong> */}
-        <Logo />
+        <strong>{shop.name}</strong>
       </NavLink>
       <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
     </header>
@@ -84,14 +82,6 @@ export function HeaderMenu({
   );
 }
 
-export function Logo() {
- return (
-  <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-    RufaStories
-  </NavLink>
- );
-}
-
 /**
  * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
  */
@@ -106,6 +96,7 @@ function HeaderCtas({isLoggedIn, cart}) {
           </Await>
         </Suspense>
       </NavLink>
+      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );
@@ -126,9 +117,8 @@ function HeaderMenuMobileToggle() {
 function SearchToggle() {
   const {open} = useAside();
   return (
-    <button className="reset flex items-center gap-2" onClick={() => open('search')}>
+    <button className="reset" onClick={() => open('search')}>
       <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.5 17.5L22 22m-2-11a9 9 0 1 0-18 0a9 9 0 0 0 18 0" color="currentColor"></path></svg>
-      <span className='text-gray-400'>Search sticker</span>
     </button>
   );
 }

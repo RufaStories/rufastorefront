@@ -136,6 +136,7 @@ button.reset {
   border: 0;
   background: inherit;
   font-size: inherit;
+  cursor: pointer;
 }
 
 button.reset > * {
@@ -159,13 +160,15 @@ button.reset:hover:not(:has(> *)) {
 */
 .header {
   align-items: center;
-  background: #fff;
+  justify-content: space-between;
+  /* background: #fff; */
   display: flex;
   height: var(--header-height);
   padding: 0 1rem;
   position: sticky;
   top: 0;
   z-index: 1;
+  border-radius: 20px;
 }
 
 .header-menu-mobile-toggle {
@@ -198,7 +201,27 @@ button.reset:hover:not(:has(> *)) {
   align-items: center;
   display: flex;
   grid-gap: 1rem;
-  margin-left: auto;
+  /* margin-left: auto; */
+}
+
+.cartIconOnNavbar{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.cartIconOnNavbar .cartCount{
+  position: absolute;
+  background: red;
+  color: #fff;
+  border-radius: 100%;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 11px;
+  top: -4px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
 /*
